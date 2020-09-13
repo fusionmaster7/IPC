@@ -1,0 +1,16 @@
+name: Deploy On Push
+#Triggered on every push to the deploy branch
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Deploy Frontend
+        uses: AhsanAyaz/angular-deploy-gh-pages-actions
+        with:
+          github_access_token: ${{ secrets.ACCESS_TOKEN }}
+          angular_project_dir: ./frontend
+          base_href: /IPC/
+          deploy_branch: gh-pages
